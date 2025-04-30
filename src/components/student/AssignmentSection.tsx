@@ -1,26 +1,8 @@
+
 /**
  * AssignmentSection.tsx
  * 
- * This component renders a section displaying a list of assignments for the student.
- * It includes assignment cards for each assignment.
- * 
- * Programmer: Ellia Morse
- * Date Created: 3/16/2025
- * 
- * Revisions:
- * - 3/16/2025: Initial creation of the file - Ellia Morse
- * 
- * Preconditions:
- * - None identified.
- * 
- * Acceptable Input:
- * - `assignments`: array - A list of assignment objects.
- * 
- * Postconditions:
- * - Renders a section with a list of assignment cards.
- * 
- * Return Values:
- * - None directly, but renders a section element.
+ * This component renders a section of assignments with a title.
  */
 
 import React from 'react';

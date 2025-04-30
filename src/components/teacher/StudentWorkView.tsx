@@ -1,27 +1,3 @@
-/**
- * StudentWorkView.tsx
- * 
- * This component renders a view of a student's work,
- * including the student's assignments and documents.
- * 
- * Programmer: Ellia Morse
- * Date Created: 3/16/2025
- * 
- * Revisions:
- * - 3/16/2025: Initial creation of the file - Ellia Morse
- * 
- * Preconditions:
- * - None identified.
- * 
- * Acceptable Input:
- * - `studentId`: string - The ID of the student.
- * 
- * Postconditions:
- * - Renders a view of the student's work.
- * 
- * Return Values:
- * - None directly, but renders a view element.
- */
 
 import React, { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";

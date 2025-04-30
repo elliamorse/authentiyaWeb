@@ -1,97 +1,69 @@
+# Welcome to your Lovable project
 
-# Authentiya - Academic Integrity Platform
+## Project info
 
-**URL**: Built in collaboration with Lovable.dev! edit here: https://lovable.dev/projects/d4855ff7-0d76-4608-a6e3-33aaef944cce
+**URL**: https://lovable.dev/projects/d4855ff7-0d76-4608-a6e3-33aaef944cce
 
-## About Authentiya
+## How can I edit this code?
 
-Authentiya is a browser extension designed to solve the challenge of maintaining academic integrity in an AI-powered world. With the rise of AI tools, schools are increasingly concerned about student learning and potential plagiarism. Authentiya provides a seamless solution that:
+There are several ways of editing your application.
 
-- Runs in the background like Grammarly
-- Offers real-time tracking of AI usage
-- Provides comprehensive reporting at scale
-- Integrates with learning management systems
+**Use Lovable**
 
-Unlike competitors such as TurnItIn (which works after submission and has accuracy issues) or GPTZero (which lacks LMS integration), Authentiya offers a vigilant and actionable solution that works alongside students and teachers.
+Simply visit the [Lovable Project](https://lovable.dev/projects/d4855ff7-0d76-4608-a6e3-33aaef944cce) and start prompting.
 
-## Project Features
+Changes made via Lovable will be committed automatically to this repo.
 
-- **Student Dashboard**: Track writing progress and manage assignments
-- **Document Editor**: Write with real-time tracking and citation support
-- **Teacher Dashboard**: Monitor student work and identify potential AI usage
-- **Assignment Management**: Create, track, and evaluate student assignments
-- **Citation System**: Add and track citations for various source types
-- **Contact Form**: Request pricing information and customize solutions for your institution
+**Use your preferred IDE**
 
-## Documentation
+If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
 
-This project follows strict documentation standards as outlined in the [PROJECT_DOCUMENTATION.md](./PROJECT_DOCUMENTATION.md) file. All code includes:
+The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
 
-- Comprehensive prologue comments
-- Function and method descriptions
-- Block and line documentation
-- Error handling documentation
-- Known limitations and faults
-
-For contributors, please review the documentation guidelines before submitting code.
-
-## Technical Architecture
-
-This project is built with:
-
-- **Frontend Framework**: React with TypeScript
-- **Build Tool**: Vite
-- **UI Components**: shadcn-ui component library
-- **Styling**: Tailwind CSS
-- **State Management**: React Context API
-- **Authentication**: Supabase Auth
-- **Database**: Supabase PostgreSQL
-- **API Integration**: React Query
-
-## Component Structure
-
-The application follows a modular component structure:
-
-- `/components/common`: Shared UI components
-- `/components/student`: Student-specific components
-- `/components/teacher`: Teacher-specific components
-- `/components/ui`: Base UI components from shadcn-ui
-- `/lib`: Utility functions and mock data
-- `/pages`: Main route components
-- `/contexts`: Application state contexts
-- `/hooks`: Custom React hooks
-- `/integrations`: External service integrations
-
-## Development
-
-Follow these steps to run the project locally:
+Follow these steps:
 
 ```sh
-# Clone the repository
+# Step 1: Clone the repository using the project's Git URL.
 git clone <YOUR_GIT_URL>
 
-# Navigate to the project directory
+# Step 2: Navigate to the project directory.
 cd <YOUR_PROJECT_NAME>
 
-# Install dependencies
+# Step 3: Install the necessary dependencies.
 npm i
 
-# Start the development server
+# Step 4: Start the development server with auto-reloading and an instant preview.
 npm run dev
 ```
 
-## Contributing
+**Edit a file directly in GitHub**
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+- Navigate to the desired file(s).
+- Click the "Edit" button (pencil icon) at the top right of the file view.
+- Make your changes and commit the changes.
 
-## License
+**Use GitHub Codespaces**
 
-This project is proprietary software. All rights reserved.
+- Navigate to the main page of your repository.
+- Click on the "Code" button (green button) near the top right.
+- Select the "Codespaces" tab.
+- Click on "New codespace" to launch a new Codespace environment.
+- Edit files directly within the Codespace and commit and push your changes once you're done.
 
-## Contact
+## What technologies are used for this project?
 
-For more information, visit [authentiya.com](https://authentiya.com)
+This project is built with .
+
+- Vite
+- TypeScript
+- React
+- shadcn-ui
+- Tailwind CSS
+
+## How can I deploy this project?
+
+Simply open [Lovable](https://lovable.dev/projects/d4855ff7-0d76-4608-a6e3-33aaef944cce) and click on Share -> Publish.
+
+## I want to use a custom domain - is that possible?
+
+We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)

@@ -1,27 +1,3 @@
-/**
- * Dashboard.tsx
- * 
- * This component renders the main dashboard page, providing an overview of the user's activities and statistics.
- * 
- * Programmer: Ellia Morse
- * Date Created: 3/16/2025
- * 
- * Revisions:
- * - 3/16/2025: Initial creation of the file - Ellia Morse
- * 
- * Preconditions:
- * - None identified.
- * 
- * Acceptable Input:
- * - None directly, as this component does not accept props.
- * 
- * Postconditions:
- * - Renders the main dashboard page with an overview of activities and statistics.
- * 
- * Return Values:
- * - None directly, but renders a page element.
- */
-
 
 import { useState, useEffect } from "react";
 import Header from "../components/layout/Header";

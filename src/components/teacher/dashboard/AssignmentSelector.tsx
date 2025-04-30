@@ -1,29 +1,3 @@
-/**
- * AssignmentSelector.tsx
- * 
- * This component renders a selector for assignments,
- * allowing the teacher to select an assignment to view or edit.
- * 
- * Programmer: Ellia Morse
- * Date Created: 3/16/2025
- * 
- * Revisions:
- * - 3/16/2025: Initial creation of the file - Ellia Morse
- * 
- * Preconditions:
- * - None identified.
- * 
- * Acceptable Input:
- * - `assignments`: array - A list of assignment objects.
- * - `onSelect`: function - The function to handle assignment selection.
- * 
- * Postconditions:
- * - Renders a selector for assignments.
- * 
- * Return Values:
- * - None directly, but renders a selector element.
- */
-
 import React from "react";
 import { Button } from "@/components/common/Button";
 import { BookOpen } from "lucide-react";

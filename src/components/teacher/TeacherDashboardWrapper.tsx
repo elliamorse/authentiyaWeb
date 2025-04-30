@@ -1,27 +1,3 @@
-/**
- * TeacherDashboardWrapper.tsx
- * 
- * This component wraps the teacher dashboard,
- * providing layout and styling for the dashboard components.
- * 
- * Programmer: Ellia Morse
- * Date Created: 3/16/2025
- * 
- * Revisions:
- * - 3/16/2025: Initial creation of the file - Ellia Morse
- * 
- * Preconditions:
- * - None identified.
- * 
- * Acceptable Input:
- * - None directly, as this component does not accept props.
- * 
- * Postconditions:
- * - Renders the teacher dashboard wrapper with layout and styling.
- * 
- * Return Values:
- * - None directly, but renders a wrapper element.
- */
 
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";

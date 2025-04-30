@@ -1,27 +1,15 @@
+
 /**
- * TimeDistributionChart.tsx
+ * File: TimeDistributionChart.tsx
  * 
- * This component renders a chart displaying the time distribution of assignments,
- * showing how much time students spend on their assignments.
+ * Description: This component displays a bar chart showing the distribution of time
+ * spent by students on assignments. The data is grouped into time ranges (e.g., <30m, 30m-1h, etc.)
+ * to provide teachers with insights into student work patterns.
  * 
- * Programmer: Ellia Morse
- * Date Created: 3/16/2025
- * 
- * Revisions:
- * - 3/16/2025: Initial creation of the file - Ellia Morse
- * 
- * Preconditions:
- * - None identified.
- * 
- * Acceptable Input:
- * - `data`: array - The data for the chart, including time distribution.
- * 
- * Postconditions:
- * - Renders a chart displaying the time distribution of assignments.
- * 
- * Return Values:
- * - None directly, but renders a chart element.
+ * Update: Enhanced visualization with better styling and improved handling of empty data.
+ * Added support for dark mode and improved tooltips.
  */
+
 import React from "react";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 import { Card, CardContent } from "@/components/common/Card";

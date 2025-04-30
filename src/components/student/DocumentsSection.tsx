@@ -1,26 +1,8 @@
+
 /**
  * DocumentsSection.tsx
  * 
- * This component renders a section displaying a list of documents for the student.
- * It includes document cards for each document.
- * 
- * Programmer: Ellia Morse
- * Date Created: 3/16/2025
- * 
- * Revisions:
- * - 3/16/2025: Initial creation of the file - Ellia Morse
- * 
- * Preconditions:
- * - None identified.
- * 
- * Acceptable Input:
- * - `documents`: array - A list of document objects.
- * 
- * Postconditions:
- * - Renders a section with a list of document cards.
- * 
- * Return Values:
- * - None directly, but renders a section element.
+ * This component renders the documents section with filters and cards.
  */
 
 import React from 'react';

@@ -1,27 +1,14 @@
+
 /**
  * StudentDashboard.tsx
  * 
- * This component renders the student dashboard,
- * including sections for assignments, documents, and writing metrics.
- * 
- * Programmer: Ellia Morse
- * Date Created: 3/16/2025
- * 
- * Revisions:
- * - 3/16/2025: Initial creation of the file - Ellia Morse
- * 
- * Preconditions:
- * - None identified.
- * 
- * Acceptable Input:
- * - None directly, as this component does not accept props.
- * 
- * Postconditions:
- * - Renders the student dashboard with assignments, documents, and writing metrics sections.
- * 
- * Return Values:
- * - None directly, but renders a dashboard element.
+ * This component renders the main student dashboard including the document editor.
+ * It allows students to write and edit documents, link to assignments, and track metrics.
+ * Document names can be edited with confirmation popups only when actually changed.
+ * Now uses a WordProcessor component for a more robust document editing experience.
+ * Refactored into smaller components for better maintainability.
  */
+
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import AssignmentPrompt from "./AssignmentPrompt";
@@ -149,23 +136,24 @@ export default function StudentDashboard({ userEmail, onLogout }: StudentDashboa
     setWordCount(newContent.trim() === "" ? 0 : words.length);
   };
   
-  const handleAddCitation = (citation?: {
-    type: "website" | "book" | "ai" | "other";
+  const handleAddCitation = (citation: {
+    type: "website" | "book" | "ai";
     source: string;
     details?: string;
   }) => {
     setCitationCount(prev => prev + 1);
     setShowCitationPrompt(false);
     
-    if (citation) {
-      toast.success("Citation added", {
-        description: `Added citation from ${citation.source}`
-      });
-    } else {
-      toast.success("Citation added", {
-        description: "Manual citation added"
-      });
-    }
+    toast.success("Citation added", {
+      description: `Added citation from ${citation.source}`
+    });
+  };
+  
+  const handleManualAddCitation = () => {
+    setCitationCount(prev => prev + 1);
+    toast.success("Citation added", {
+      description: "Manual citation added"
+    });
   };
   
   const handleSubmitAssignment = () => {
@@ -222,7 +210,7 @@ export default function StudentDashboard({ userEmail, onLogout }: StudentDashboa
               <DocumentActions 
                 linkedAssignment={linkedAssignment}
                 wordCount={wordCount}
-                onAddCitation={handleAddCitation}
+                onAddCitation={handleManualAddCitation}
                 onSubmitAssignment={handleSubmitAssignment}
               />
             )}

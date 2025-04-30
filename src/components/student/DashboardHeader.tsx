@@ -1,26 +1,9 @@
+
 /**
  * DashboardHeader.tsx
  * 
- * This component renders the header section of the student dashboard,
- * including the student's name and a welcome message.
- * 
- * Programmer: Ellia Morse
- * Date Created: 3/16/2025
- * 
- * Revisions:
- * - 3/16/2025: Initial creation of the file - Ellia Morse
- * 
- * Preconditions:
- * - None identified.
- * 
- * Acceptable Input:
- * - `studentName`: string - The name of the student.
- * 
- * Postconditions:
- * - Renders the header section with the student's name and a welcome message.
- * 
- * Return Values:
- * - None directly, but renders a header element.
+ * This component displays the dashboard header with title, description,
+ * and assignment linking controls.
  */
 
 import { Button } from "@/components/ui/button";
@@ -38,7 +21,7 @@ export default function DashboardHeader({
   return (
     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
       <div>
-        <h1 className="text-3xl font-bold text-authentiya-charcoal-darkest dark:text-authentiya-accent-cream">Student Editor</h1>
+        <h1 className="text-3xl font-bold text-authentiya-charcoal-darkest dark:text-authentiya-accent-cream">Student Dashboard</h1>
         <p className="text-muted-foreground">Track your writing progress and assignments</p>
       </div>
       

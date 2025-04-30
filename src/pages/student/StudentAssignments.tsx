@@ -1,25 +1,9 @@
+
 /**
  * StudentAssignments.tsx
  * 
- * This component renders the student assignments page, displaying a list of assignments and their details.
- * 
- * Programmer: Ellia Morse
- * Date Created: 3/16/2025
- * 
- * Revisions:
- * - 3/16/2025: Initial creation of the file - Ellia Morse
- * 
- * Preconditions:
- * - None identified.
- * 
- * Acceptable Input:
- * - None directly, as this component does not accept props.
- * 
- * Postconditions:
- * - Renders the student assignments page with a list of assignments.
- * 
- * Return Values:
- * - None directly, but renders a page element.
+ * This component displays a list of student assignments and documents.
+ * It now focuses solely on document management, with the tab functionality simplified to only show documents.
  */
 
 import React, { useState } from "react";
@@ -34,14 +18,10 @@ import { CheckCircle, Clock, AlertTriangle } from "lucide-react";
 import { studentClasses, studentDocuments } from "./mockData";
 
 export default function StudentAssignments() {
-  // Navigation hook for redirecting to other pages
   const navigate = useNavigate();
-  
-  // State for documents and filters
   const [documents, setDocuments] = useState(studentDocuments);
   const [documentStatus, setDocumentStatus] = useState<string>("all");
   
-  // Helper function to format date for display
   const formatDate = (dateString: string) => {
     const options: Intl.DateTimeFormatOptions = { 
       year: 'numeric', 
@@ -51,7 +31,6 @@ export default function StudentAssignments() {
     return new Date(dateString).toLocaleDateString(undefined, options);
   };
   
-  // Helper function to format date and time for display
   const formatDateTime = (dateString: string) => {
     const options: Intl.DateTimeFormatOptions = { 
       month: 'short', 
@@ -62,19 +41,15 @@ export default function StudentAssignments() {
     return new Date(dateString).toLocaleDateString(undefined, options);
   };
   
-  // Filter documents based on selected status
   const filteredDocuments = documents.filter(doc => {
     if (documentStatus === "all") return true;
     return doc.status === documentStatus;
   });
   
-  // Handle opening a document
   const handleOpenDocument = (doc: any) => {
-    // Store document data in localStorage for the editor
     window.localStorage.setItem("currentDocument", doc.content || "");
     window.localStorage.setItem("documentName", doc.title);
     
-    // If document is linked to an assignment, store that info too
     if (doc.assignmentId) {
       window.localStorage.setItem("linkedAssignment", doc.assignmentId);
       window.localStorage.setItem("linkedAssignmentTitle", doc.title);
@@ -83,11 +58,9 @@ export default function StudentAssignments() {
       window.localStorage.removeItem("linkedAssignmentTitle");
     }
     
-    // Navigate to the document editor
     navigate("/dashboard");
   };
   
-  // Render status badge based on document status
   const renderStatusBadge = (status: string) => {
     switch (status) {
       case "in_progress":
@@ -104,7 +77,7 @@ export default function StudentAssignments() {
         );
       case "draft":
         return (
-          <Badge variant="default" className="flex items-center gap-1">
+          <Badge variant="secondary" className="flex items-center gap-1">
             <FileText className="h-3 w-3" /> Draft
           </Badge>
         );
@@ -119,17 +92,14 @@ export default function StudentAssignments() {
     }
   };
   
-  // Render the page
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      {/* Page header with navigation */}
       <Header 
         userEmail="student@example.com" 
         userRole="student" 
         onLogout={() => navigate("/")} 
       />
       
-      {/* Main content */}
       <main className="flex-1 container py-6 space-y-6">
         <div>
           <h1 className="text-3xl font-bold font-playfair text-authentiya-charcoal-darkest dark:text-authentiya-accent-cream">
@@ -140,7 +110,6 @@ export default function StudentAssignments() {
           </p>
         </div>
         
-        {/* Documents section with filtering */}
         <DocumentsSection
           documentStatus={documentStatus}
           setDocumentStatus={setDocumentStatus}

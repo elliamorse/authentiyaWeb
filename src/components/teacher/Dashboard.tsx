@@ -1,27 +1,3 @@
-/**
- * Dashboard.tsx
- * 
- * This component renders the teacher dashboard,
- * including sections for assignments, statistics, and student information.
- * 
- * Programmer: Ellia Morse
- * Date Created: 3/16/2025
- * 
- * Revisions:
- * - 3/16/2025: Initial creation of the file - Ellia Morse
- * 
- * Preconditions:
- * - None identified.
- * 
- * Acceptable Input:
- * - None directly, as this component does not accept props.
- * 
- * Postconditions:
- * - Renders the teacher dashboard with assignments, statistics, and student information sections.
- * 
- * Return Values:
- * - None directly, but renders a dashboard element.
- */
 
 import React from "react";
 import { getAssignmentById, getStudentsByAssignment } from "@/lib/teacherData";

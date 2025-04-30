@@ -1,26 +1,3 @@
-/**
- * TeacherStudentView.tsx
- * 
- * This component renders the teacher student view page, displaying details of a specific student and their work.
- * 
- * Programmer: Ellia Morse
- * Date Created: 3/16/2025
- * 
- * Revisions:
- * - 3/16/2025: Initial creation of the file - Ellia Morse
- * 
- * Preconditions:
- * - None identified.
- * 
- * Acceptable Input:
- * - None directly, as this component does not accept props.
- * 
- * Postconditions:
- * - Renders the teacher student view page with student details and work.
- * 
- * Return Values:
- * - None directly, but renders a page element.
- */
 
 import { useParams, useNavigate } from "react-router-dom";
 import Header from "../../components/layout/Header";

@@ -1,160 +1,152 @@
-/**
- * CitationPrompt.tsx
- * 
- * This component renders a prompt for students to add citations to their document.
- * It includes a button to add a new citation.
- * 
- * Programmer: Ellia Morse
- * Date Created: 3/16/2025
- * 
- * Revisions:
- * - 3/16/2025: Initial creation of the file - Ellia Morse
- * 
- * Preconditions:
- * - None identified.
- * 
- * Acceptable Input:
- * - `documentId`: string - The ID of the document to which citations will be added.
- * 
- * Postconditions:
- * - Renders a prompt with a button to add citations.
- * 
- * Return Values:
- * - None directly, but renders a prompt element.
- */
 
-import React, { useState } from "react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { Label } from "@/components/ui/label";
+import { useState } from "react";
+import { Button } from "@/components/common/Button";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/common/Card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { BookOpen, Globe, Bot, HelpCircle } from "lucide-react";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Label } from "@/components/ui/label";
+import { X, BookOpen, MessageSquare, Link2 } from "lucide-react";
 
-// Define the props interface for the CitationPrompt component
-export interface CitationPromptProps {
-  // Function to call when the citation form is submitted
+interface CitationPromptProps {
+  copiedText: string;
   onSubmit: (citation: {
-    type: "website" | "book" | "ai" | "other";
+    type: "website" | "book" | "ai";
     source: string;
     details?: string;
   }) => void;
-  // Function to call when the citation form is dismissed
   onDismiss: () => void;
-  // Optional text that was copied for citation
-  copiedText?: string;
 }
 
-// CitationPrompt component definition
-export default function CitationPrompt({ onSubmit, onDismiss, copiedText = "" }: CitationPromptProps) {
-  // State for the citation type
-  const [citationType, setCitationType] = useState<"website" | "book" | "ai" | "other">("website");
-  // State for the citation source
-  const [source, setSource] = useState(copiedText || "");
-  // State for additional citation details
-  const [details, setDetails] = useState("");
+export default function CitationPrompt({ copiedText, onSubmit, onDismiss }: CitationPromptProps) {
+  const [activeTab, setActiveTab] = useState<"website" | "book" | "ai">("website");
+  const [website, setWebsite] = useState("");
+  const [bookTitle, setBookTitle] = useState("");
+  const [bookAuthor, setBookAuthor] = useState("");
+  const [aiModel, setAiModel] = useState("ChatGPT");
+  const [aiPrompt, setAiPrompt] = useState("");
   
-  // Handle form submission
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    // Validate that a source is provided
-    if (!source.trim()) {
-      alert("Please enter a source");
-      return;
+  const handleSubmit = () => {
+    if (activeTab === "website" && website) {
+      onSubmit({ type: "website", source: website });
+    } else if (activeTab === "book" && bookTitle) {
+      onSubmit({ 
+        type: "book", 
+        source: bookTitle, 
+        details: bookAuthor ? `by ${bookAuthor}` : undefined 
+      });
+    } else if (activeTab === "ai" && aiModel) {
+      onSubmit({ 
+        type: "ai", 
+        source: aiModel, 
+        details: aiPrompt ? `Prompt: ${aiPrompt}` : undefined 
+      });
     }
-    
-    // Call the onSubmit callback with the citation data
-    onSubmit({
-      type: citationType,
-      source: source.trim(),
-      details: details.trim() || undefined
-    });
   };
   
-  // Render the citation form
   return (
-    <Dialog open={true} onOpenChange={(open) => !open && onDismiss()}>
-      <DialogContent className="sm:max-w-md">
-        <DialogHeader>
-          <DialogTitle>Add Citation</DialogTitle>
-        </DialogHeader>
-        
-        <form onSubmit={handleSubmit} className="space-y-4 pt-4">
-          <div className="space-y-2">
-            <Label>Citation Type</Label>
-            <RadioGroup 
-              defaultValue={citationType} 
-              onValueChange={(value) => setCitationType(value as any)}
-              className="grid grid-cols-2 gap-2"
-            >
-              <div className="flex items-center space-x-2 rounded-md border p-2">
-                <RadioGroupItem value="website" id="website" />
-                <Label htmlFor="website" className="flex items-center cursor-pointer">
-                  <Globe className="h-3.5 w-3.5 mr-1.5" />
-                  Website
-                </Label>
-              </div>
-              <div className="flex items-center space-x-2 rounded-md border p-2">
-                <RadioGroupItem value="book" id="book" />
-                <Label htmlFor="book" className="flex items-center cursor-pointer">
-                  <BookOpen className="h-3.5 w-3.5 mr-1.5" />
-                  Book
-                </Label>
-              </div>
-              <div className="flex items-center space-x-2 rounded-md border p-2">
-                <RadioGroupItem value="ai" id="ai" />
-                <Label htmlFor="ai" className="flex items-center cursor-pointer">
-                  <Bot className="h-3.5 w-3.5 mr-1.5" />
-                  AI Source
-                </Label>
-              </div>
-              <div className="flex items-center space-x-2 rounded-md border p-2">
-                <RadioGroupItem value="other" id="other" />
-                <Label htmlFor="other" className="flex items-center cursor-pointer">
-                  <HelpCircle className="h-3.5 w-3.5 mr-1.5" />
-                  Other
-                </Label>
-              </div>
-            </RadioGroup>
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm animate-fade-in">
+      <Card className="w-full max-w-lg animate-slide-up">
+        <CardHeader className="flex flex-row items-center justify-between pb-2">
+          <CardTitle className="text-xl">Cite Your Source</CardTitle>
+          <Button variant="ghost" size="icon" onClick={onDismiss}>
+            <X className="h-4 w-4" />
+          </Button>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="p-3 bg-muted rounded-md text-sm">
+            <p className="font-medium mb-1">Copied text:</p>
+            <p className="text-muted-foreground line-clamp-3">
+              {copiedText || "No text detected"}
+            </p>
           </div>
           
-          <div className="space-y-2">
-            <Label htmlFor="source">
-              {citationType === "website" ? "URL / Website Name" : 
-               citationType === "book" ? "Book Title / Author" :
-               citationType === "ai" ? "AI Tool Name" : "Source Name"}
-            </Label>
-            <Input 
-              id="source" 
-              value={source}
-              onChange={(e) => setSource(e.target.value)}
-              placeholder={
-                citationType === "website" ? "https://example.com or Website name" : 
-                citationType === "book" ? "Book title by Author" :
-                citationType === "ai" ? "ChatGPT, Claude, etc." : "Source name or identifier"
-              }
-            />
-          </div>
-          
-          <div className="space-y-2">
-            <Label htmlFor="details">Additional Details (optional)</Label>
-            <Textarea 
-              id="details" 
-              value={details}
-              onChange={(e) => setDetails(e.target.value)}
-              placeholder="Enter any additional reference information..."
-              rows={3}
-            />
-          </div>
-          
-          <div className="flex justify-end space-x-2 pt-2">
-            <Button type="button" variant="outline" onClick={onDismiss}>Cancel</Button>
-            <Button type="submit">Add Citation</Button>
-          </div>
-        </form>
-      </DialogContent>
-    </Dialog>
+          <Tabs 
+            value={activeTab} 
+            onValueChange={(v) => setActiveTab(v as "website" | "book" | "ai")}
+            className="w-full"
+          >
+            <TabsList className="grid w-full grid-cols-3">
+              <TabsTrigger value="website" className="flex items-center gap-1">
+                <Link2 className="h-4 w-4" />
+                Website
+              </TabsTrigger>
+              <TabsTrigger value="book" className="flex items-center gap-1">
+                <BookOpen className="h-4 w-4" />
+                Book
+              </TabsTrigger>
+              <TabsTrigger value="ai" className="flex items-center gap-1">
+                <MessageSquare className="h-4 w-4" />
+                AI
+              </TabsTrigger>
+            </TabsList>
+            
+            <TabsContent value="website" className="space-y-4 animate-fade-in">
+              <div className="space-y-2">
+                <Label htmlFor="website-url">Website URL</Label>
+                <Input
+                  id="website-url"
+                  type="url"
+                  placeholder="https://example.com"
+                  value={website}
+                  onChange={(e) => setWebsite(e.target.value)}
+                />
+              </div>
+            </TabsContent>
+            
+            <TabsContent value="book" className="space-y-4 animate-fade-in">
+              <div className="space-y-2">
+                <Label htmlFor="book-title">Book Title</Label>
+                <Input
+                  id="book-title"
+                  placeholder="Enter book title"
+                  value={bookTitle}
+                  onChange={(e) => setBookTitle(e.target.value)}
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="book-author">Author (optional)</Label>
+                <Input
+                  id="book-author"
+                  placeholder="Enter author name"
+                  value={bookAuthor}
+                  onChange={(e) => setBookAuthor(e.target.value)}
+                />
+              </div>
+            </TabsContent>
+            
+            <TabsContent value="ai" className="space-y-4 animate-fade-in">
+              <div className="space-y-2">
+                <Label htmlFor="ai-model">AI Model</Label>
+                <Input
+                  id="ai-model"
+                  placeholder="ChatGPT, Claude, etc."
+                  value={aiModel}
+                  onChange={(e) => setAiModel(e.target.value)}
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="ai-prompt">Prompt Used (optional)</Label>
+                <Textarea
+                  id="ai-prompt"
+                  placeholder="Enter the prompt you used"
+                  value={aiPrompt}
+                  onChange={(e) => setAiPrompt(e.target.value)}
+                  rows={3}
+                />
+              </div>
+            </TabsContent>
+          </Tabs>
+        </CardContent>
+        <CardFooter className="flex justify-between">
+          <Button variant="outline" onClick={onDismiss}>
+            Cancel
+          </Button>
+          <Button onClick={handleSubmit}>
+            Add Citation
+          </Button>
+        </CardFooter>
+      </Card>
+    </div>
   );
 }

@@ -1,27 +1,15 @@
+
 /**
- * StartTimeChart.tsx
+ * File: StartTimeChart.tsx
  * 
- * This component renders a chart displaying the start times of assignments,
- * showing when students typically begin their work.
+ * Description: This component visualizes when students typically start working on their
+ * assignments throughout the day. This helps teachers understand student work patterns
+ * and potentially identify optimal times for releasing new assignments or providing support.
  * 
- * Programmer: Ellia Morse
- * Date Created: 3/16/2025
- * 
- * Revisions:
- * - 3/16/2025: Initial creation of the file - Ellia Morse
- * 
- * Preconditions:
- * - None identified.
- * 
- * Acceptable Input:
- * - `data`: array - The data for the chart, including start times.
- * 
- * Postconditions:
- * - Renders a chart displaying the start times of assignments.
- * 
- * Return Values:
- * - None directly, but renders a chart element.
+ * Update: Enhanced visualization with better styling and improved handling of empty data.
+ * Added support for dark mode and improved tooltips.
  */
+
 import React from "react";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 import { Card, CardContent } from "@/components/common/Card";
